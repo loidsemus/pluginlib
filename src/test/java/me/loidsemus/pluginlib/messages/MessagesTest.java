@@ -34,6 +34,13 @@ public class MessagesTest {
         assertThat(Messages.get(LangKey.TEST_MESSAGE, true, "placeholder")).isEqualTo("customprefix Custom test message: placeholder");
     }
 
+    @Test
+    public void testLoadFailure() {
+        System.out.println("Testing failure, warning is expected");
+        boolean result = Messages.load(tempFolder.getRoot(),"test",LangKey.values(),LangKey.PREFIX);
+        assertThat(result).isFalse();
+    }
+
     private enum LangKey implements Translatable {
         PREFIX("prefix"),
         TEST_MESSAGE("Test message: {test}", "test");
