@@ -17,8 +17,9 @@ public class ConfigTest {
 
     @Test
     public void testNonExistentFile() {
-        Config.loadFile(tempFolder.getRoot(), "config/test.conf");
-        assertThat(Config.file("test").getNode().getValue()).isNull();
+        Config.loadFile(tempFolder.getRoot(), "nonexistentfile.conf");
+        assertThat(Config.file("nonexistentfile").getNode().getValue()).isNull();
+        Config.unloadFile("nonexistentfile");
     }
 
     @Test
