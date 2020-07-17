@@ -16,6 +16,7 @@ public class Messages {
 
     private static boolean useDefaults = false;
     private static Translatable prefixTranslatable;
+    private static List<String> missingKeys = new ArrayList<>();
     //private String prefixOffset;
 
     private Messages() {}
@@ -35,6 +36,7 @@ public class Messages {
     public static boolean load(File langDirectory, String languageCode, Translatable[] values, Translatable prefix) {
         Logger logger = Logger.getLogger(langDirectory + File.separator + "lang_" + languageCode + ".properties");
 
+        missingKeys.clear();
         saveDefaults(new File(langDirectory, "lang_default.properties"), values);
         Messages.prefixTranslatable = prefix;
 
@@ -75,7 +77,6 @@ public class Messages {
 
         //setPrefixOffset(properties.getProperty("prefix"));
 
-        List<String> missingKeys = new ArrayList<>();
         for (Translatable key : values) {
             if (!properties.containsKey(key.getKey())) {
                 missingKeys.add(key.getKey());
@@ -187,6 +188,10 @@ public class Messages {
             }
         }
         return message;
+    }
+
+    public static List<String> getMissingKeys() {
+        return missingKeys;
     }
 
     private static boolean isNotNullOrEmpty(String string) {
