@@ -15,7 +15,7 @@ public class ConfigFile {
     public ConfigFile(HoconConfigurationLoader loader) {
         this.loader = loader;
         try {
-            this.root = loader.load();
+            load();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Failed to load config (see stacktrace), will load empty node instead");
@@ -27,7 +27,7 @@ public class ConfigFile {
      *
      * @throws IOException If the file could not be loaded
      */
-    public void reload() throws IOException {
+    public void load() throws IOException {
         root = loader.load();
     }
 

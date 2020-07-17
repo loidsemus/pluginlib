@@ -30,7 +30,7 @@ public class ConfigTest {
         Config.file("new").save();
         assertThat(new File(tempFolder.getRoot(), "new.conf").exists());
 
-        Config.file("new").reload();
+        Config.file("new").load();
         assertThat(Config.file("new").getNode("test").isVirtual()).isFalse();
         assertThat(Config.file("new").getNode("test").getString("")).isEqualTo("test");
     }
