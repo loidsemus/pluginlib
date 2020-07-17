@@ -5,7 +5,7 @@
 ## Features
 ### Existing features
 * Customizable messages (Messages class)
+* Config utilites based on Configurate, only supports HOCON
 
 ### Planned/coming features (ordered by priority)
-* Config utilities/framework (only yaml?)
 * Command framework
