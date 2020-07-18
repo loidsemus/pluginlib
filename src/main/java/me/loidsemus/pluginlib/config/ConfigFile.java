@@ -38,6 +38,9 @@ public class ConfigFile {
     /**
      * Gets a node, same method as Configurate's, but always from root.
      * Refer to <a href="https://github.com/SpongePowered/Configurate/wiki/Node">Configurate's wiki on nodes</a>
+     *
+     * @param path Path of the wanted node
+     * @return The node, never null. If it doesn't exist it will be an empty "virtual" node.
      */
     public CommentedConfigurationNode getNode(Object... path) {
         return root.getNode(path);

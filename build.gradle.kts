@@ -1,7 +1,7 @@
 plugins {
-    java
-    id("nebula.maven-publish") version "17.0.0"
-    id("nebula.javadoc-jar") version "17.0.0"
+    id("java-library")
+    id("maven-publish")
+    id("signing")
 }
 
 group = "me.loidsemus"
@@ -21,4 +21,22 @@ dependencies {
     testImplementation("org.assertj:assertj-core:3.16.1")
     testImplementation("org.spigotmc:spigot-api:1.16.1-R0.1-SNAPSHOT")
     testImplementation("commons-io:commons-io:2.6")
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifactId = "pluginlib"
+            from(components["java"])
+            pom {
+                name.set("pluginlib")
+                description.set("Spigot commons")
+            }
+        }
+    }
 }
